@@ -1,0 +1,3 @@
+SELECT game.team_name_home, (pts_qtr1_home + pts_qtr2_home + pts_qtr3_home + pts_qtr4_home) AS home_points,  game.team_name_away, (pts_qtr1_away + pts_qtr2_away + pts_qtr3_away + pts_qtr4_away) AS away_points, game_info.game_date, game_info.attendance
+FROM line_score LEFT JOIN game_info ON line_score.game_id = game_info.game_id LEFT JOIN game ON line_score.game_id = game.game_id
+WHERE home_points IS NOT NULL AND away_points IS NOT NULL AND team_name_home != "Team LeBron" AND attendance IS NOT NULL;
